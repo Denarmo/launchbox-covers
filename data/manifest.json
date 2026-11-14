@@ -121,7 +121,8 @@
     "w",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/023b2108-b8ac-445b-ad74-43b84e1884bd.png"
   },
   "APF Imagination Machine": {
    "dir": "apf-imagination-machine",
@@ -143,7 +144,8 @@
     "r",
     "s",
     "u"
-   ]
+   ],
+   "device": "Platforms/23d5bc1e-0836-4b75-a895-f5d6a28f5648.png"
   },
   "Aamber Pegasus": {
    "dir": "aamber-pegasus",
@@ -152,7 +154,8 @@
     "g",
     "i",
     "t"
-   ]
+   ],
+   "device": "Platforms/2c19d323-896b-4b8f-a305-a360cb3b36ce.png"
   },
   "Acorn Archimedes": {
    "dir": "acorn-archimedes",
@@ -213,7 +216,8 @@
     "w",
     "x",
     "z"
-   ]
+   ],
+   "device": "Platforms/f0f4d9d0-f0af-4e01-b60d-9013fa920caf.png"
   },
   "Acorn Atom": {
    "dir": "acorn-atom",
@@ -252,7 +256,8 @@
     "l",
     "m",
     "s"
-   ]
+   ],
+   "device": "Platforms/e88cf831-606b-45cd-9dbf-da2803c373d5.png"
   },
   "Acorn Electron": {
    "dir": "acorn-electron",
@@ -314,7 +319,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/7eb972f9-7d0d-4c3b-8b06-94736e7b129c.png"
   },
   "Amstrad CPC": {
    "dir": "amstrad-cpc",
@@ -376,7 +382,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/7191aa98-dc00-4b79-ba28-cb4ac1bb42a7.png"
   },
   "Amstrad GX4000": {
    "dir": "amstrad-gx4000",
@@ -412,7 +419,8 @@
     "s",
     "t",
     "w"
-   ]
+   ],
+   "device": "Platforms/6d7401d0-53ae-4765-9507-1830147b496e.png"
   },
   "Android": {
    "dir": "android",
@@ -456,7 +464,8 @@
     "r",
     "s",
     "w"
-   ]
+   ],
+   "device": "Platforms/288f1ab2-dc8a-40d4-8705-25286659662f.png"
   },
   "Apple II": {
    "dir": "apple-ii",
@@ -518,7 +527,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/6e220ee2-e734-4403-8e00-292b6a8eac10.png"
   },
   "Apple IIGS": {
    "dir": "apple-iigs",
@@ -570,7 +580,8 @@
     "t",
     "w",
     "z"
-   ]
+   ],
+   "device": "Platforms/c2f1027a-bc7b-4b02-93e5-8de11aef4b4e.png"
   },
   "Apple Mac OS": {
    "dir": "apple-mac-os",
@@ -631,7 +642,8 @@
     "w",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/6dac0cc7-19dc-4b63-bec1-a7d61b11e379.png"
   },
   "Apple iOS": {
    "dir": "apple-ios",
@@ -667,7 +679,8 @@
    "faces": [
     "a",
     "g"
-   ]
+   ],
+   "device": "Platforms/8b79275f-c961-45db-abc3-4c44f7581395.png"
   },
   "Arcade": {
    "dir": "arcade",
@@ -728,7 +741,8 @@
     "w",
     "x",
     "z"
-   ]
+   ],
+   "device": "Platforms/7ff532bf-1082-457e-b34e-6f10c9dd8641.png"
   },
   "Arduboy": {
    "dir": "arduboy",
@@ -816,7 +830,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/04ceaac8-2269-46d1-b92d-44065ae83eaf.png"
   },
   "Atari 5200": {
    "dir": "atari-5200",
@@ -869,7 +884,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/610298b3-0078-4d57-96be-f42b9cf9b299.png"
   },
   "Atari 7800": {
    "dir": "atari-7800",
@@ -919,7 +935,8 @@
     "t",
     "w",
     "x"
-   ]
+   ],
+   "device": "Platforms/351b846d-1d33-401f-8b33-f07847b11951.png"
   },
   "Atari 800": {
    "dir": "atari-800",
@@ -981,7 +998,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/0cbe732a-2159-4168-85be-de3ad0d9fa7d.png"
   },
   "Atari Jaguar": {
    "dir": "atari-jaguar",
@@ -1036,7 +1054,8 @@
     "w",
     "x",
     "z"
-   ]
+   ],
+   "device": "Platforms/459dc72c-514d-4d00-bea9-bc426ad0e5d4.png"
   },
   "Atari Jaguar CD": {
    "dir": "atari-jaguar-cd",
@@ -1076,7 +1095,8 @@
     "s",
     "v",
     "w"
-   ]
+   ],
+   "device": "Platforms/845d60de-1d66-464b-bba4-b1d7635e6612.png"
   },
   "Atari Lynx": {
    "dir": "atari-lynx",
@@ -1133,7 +1153,8 @@
     "w",
     "x",
     "z"
-   ]
+   ],
+   "device": "Platforms/0fd52436-897e-42fd-97a2-6c66e4219088.png"
   },
   "Atari ST": {
    "dir": "atari-st",
@@ -1195,7 +1216,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/91a254e5-688f-4de1-bfbe-264476a4bffc.png"
   },
   "Atari XEGS": {
    "dir": "atari-xegs",
@@ -1238,7 +1260,8 @@
     "r",
     "s",
     "t"
-   ]
+   ],
+   "device": "Platforms/9908ce46-9033-4325-9023-6de66eea2e80.png"
   },
   "BBC Microcomputer System": {
    "dir": "bbc-microcomputer-system",
@@ -1300,7 +1323,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/1a342eb9-4360-4d5b-af0f-ebde6845618c.png"
   },
   "Bally Astrocade": {
    "dir": "bally-astrocade",
@@ -1340,7 +1364,8 @@
     "s",
     "t",
     "w"
-   ]
+   ],
+   "device": "Platforms/69b11bcb-7753-458d-8125-9b745529ca6f.png"
   },
   "Bandai Super Vision 8000": {
    "dir": "bandai-super-vision-8000",
@@ -1379,7 +1404,8 @@
     "m",
     "p",
     "t"
-   ]
+   ],
+   "device": "Platforms/08aa3d9a-e102-478b-be86-c838db7e2ff3.png"
   },
   "Casio Loopy": {
    "dir": "casio-loopy",
@@ -1409,7 +1435,8 @@
     "p",
     "r",
     "w"
-   ]
+   ],
+   "device": "Platforms/764a6276-69f4-4e9e-8faa-b941fcecb3a6.png"
   },
   "Casio PV-1000": {
    "dir": "casio-pv-1000",
@@ -1437,7 +1464,8 @@
     "s",
     "t",
     "w"
-   ]
+   ],
+   "device": "Platforms/f0bb5540-ba59-4837-8e6d-575f4fa9b506.png"
   },
   "Coleco ADAM": {
    "dir": "coleco-adam",
@@ -1478,7 +1506,8 @@
     "v",
     "w",
     "z"
-   ]
+   ],
+   "device": "Platforms/b91a6458-7fef-41ff-aff0-799cb5a760fb.png"
   },
   "ColecoVision": {
    "dir": "colecovision",
@@ -1538,7 +1567,8 @@
     "w",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/e8a56c34-b4e8-4f7d-bd87-390e3581161e.png"
   },
   "Commodore 128": {
    "dir": "commodore-128",
@@ -1589,7 +1619,8 @@
     "t",
     "u",
     "v"
-   ]
+   ],
+   "device": "Platforms/f3acd4ec-7d1c-429b-aa9e-9a0f002fd763.png"
   },
   "Commodore 64": {
    "dir": "commodore-64",
@@ -1651,7 +1682,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/1a9298aa-7143-41fb-a655-4833ea800171.png"
   },
   "Commodore Amiga": {
    "dir": "commodore-amiga",
@@ -1713,7 +1745,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/4d7b348b-8e5a-44f1-a14e-f943c97a59f2.png"
   },
   "Commodore Amiga CD32": {
    "dir": "commodore-amiga-cd32",
@@ -1775,7 +1808,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/f02c66bc-733a-4f60-9168-cd7d90f6ea39.png"
   },
   "Commodore CDTV": {
    "dir": "commodore-cdtv",
@@ -1824,7 +1858,8 @@
     "u",
     "w",
     "x"
-   ]
+   ],
+   "device": "Platforms/1cdda12f-7eca-4374-8701-434644088649.png"
   },
   "Commodore MAX Machine": {
    "dir": "commodore-max-machine",
@@ -1860,7 +1895,8 @@
     "s",
     "v",
     "w"
-   ]
+   ],
+   "device": "Platforms/1da4838e-f2fe-4338-bdb4-80b23d481cf7.png"
   },
   "Commodore PET": {
    "dir": "commodore-pet",
@@ -1895,7 +1931,8 @@
     "t",
     "v",
     "w"
-   ]
+   ],
+   "device": "Platforms/ea5a05a8-7923-49ce-ab19-6938493d604b.png"
   },
   "Commodore Plus 4": {
    "dir": "commodore-plus-4",
@@ -1957,7 +1994,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/d6ceba1a-449a-4de6-9cd8-65401828af26.png"
   },
   "Commodore VIC-20": {
    "dir": "commodore-vic-20",
@@ -2019,7 +2057,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/d7e81831-a34c-49ab-9170-c2f5298146d2.png"
   },
   "Dragon 32/64": {
    "dir": "dragon-32-64",
@@ -2077,7 +2116,8 @@
     "v",
     "w",
     "z"
-   ]
+   ],
+   "device": "Platforms/29328f22-c931-4f28-a67b-471eb9dd1bef.png"
   },
   "EACA EG2000 Colour Genie": {
    "dir": "eaca-eg2000-colour-genie",
@@ -2114,7 +2154,8 @@
     "q",
     "s",
     "t"
-   ]
+   ],
+   "device": "Platforms/8f4004bc-3c4b-41a0-b27f-4179e4cd88d5.png"
   },
   "Emerson Arcadia 2001": {
    "dir": "emerson-arcadia-2001",
@@ -2160,7 +2201,8 @@
     "s",
     "t",
     "v"
-   ]
+   ],
+   "device": "Platforms/6bd6a013-e671-4106-b6c9-b968fabdfc7e.png"
   },
   "Enterprise": {
    "dir": "enterprise",
@@ -2206,7 +2248,8 @@
     "r",
     "s",
     "w"
-   ]
+   ],
+   "device": "Platforms/20365d9b-5e66-4e0f-b3a7-9ed743bab023.png"
   },
   "Entex Adventure Vision": {
    "dir": "entex-adventure-vision",
@@ -2220,7 +2263,8 @@
     "d",
     "s",
     "t"
-   ]
+   ],
+   "device": "Platforms/68cee250-3950-4358-9fdd-32acd4730aae.png"
   },
   "Epoch Game Pocket Computer": {
    "dir": "epoch-game-pocket-computer",
@@ -2244,7 +2288,8 @@
     "r",
     "s",
     "w"
-   ]
+   ],
+   "device": "Platforms/a0aa3977-907a-49e6-b434-56a60622fec4.png"
   },
   "Epoch Super Cassette Vision": {
    "dir": "epoch-super-cassette-vision",
@@ -2284,7 +2329,8 @@
     "t",
     "w",
     "y"
-   ]
+   ],
+   "device": "Platforms/c4071a3b-d244-42f5-ae55-c2d76d392e4a.png"
   },
   "Exelvision EXL 100": {
    "dir": "exelvision-exl-100",
@@ -2369,7 +2415,8 @@
     "r",
     "s",
     "t"
-   ]
+   ],
+   "device": "Platforms/c2bf96a7-796b-4cae-a640-d5af63c30bda.png"
   },
   "Fairchild Channel F": {
    "dir": "fairchild-channel-f",
@@ -2407,7 +2454,8 @@
     "s",
     "t",
     "v"
-   ]
+   ],
+   "device": "Platforms/ae230921-dcfe-4076-8c5f-6c49d1fd64d5.png"
   },
   "Fujitsu FM Towns Marty": {
    "dir": "fujitsu-fm-towns-marty",
@@ -2468,7 +2516,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/af7c7bad-b01c-43d7-b65e-cc6237a4966c.png"
   },
   "Fujitsu FM-7": {
    "dir": "fujitsu-fm-7",
@@ -2522,7 +2571,8 @@
     "t",
     "v",
     "y"
-   ]
+   ],
+   "device": "Platforms/b16770e4-5d70-45ec-ae15-eb2557bfa547.png"
   },
   "Funtech Super Acan": {
    "dir": "funtech-super-acan",
@@ -2558,7 +2608,8 @@
     "s",
     "x",
     "y"
-   ]
+   ],
+   "device": "Platforms/3189aeca-8d12-46c9-8eb1-a272b7a68dab.png"
   },
   "GCE Vectrex": {
    "dir": "gce-vectrex",
@@ -2604,7 +2655,8 @@
     "t",
     "v",
     "w"
-   ]
+   ],
+   "device": "Platforms/244962df-cf63-4d51-b843-de7e86f27f6d.png"
   },
   "Game Wave Family Entertainment System": {
    "dir": "game-wave-family-entertainment-system",
@@ -2621,7 +2673,8 @@
    ],
    "faces": [
     "g"
-   ]
+   ],
+   "device": "Platforms/ffb5ebe6-2ea4-4989-9f21-73f4f5e3bf99.png"
   },
   "GamePark GP32": {
    "dir": "gamepark-gp32",
@@ -2653,7 +2706,8 @@
     "r",
     "t",
     "w"
-   ]
+   ],
+   "device": "Platforms/a55821c0-8b11-492e-b13c-bfc8d3e6206f.png"
   },
   "GameWave": {
    "dir": "gamewave",
@@ -2784,7 +2838,8 @@
     "s",
     "t",
     "w"
-   ]
+   ],
+   "device": "Platforms/de1d1132-a43e-4583-a77b-ad03a93f9de0.png"
   },
   "Jupiter Ace": {
    "dir": "jupiter-ace",
@@ -2921,7 +2976,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/0ddd29e5-80dd-439e-ab05-33f3d5f54586.png"
   },
   "MUGEN": {
    "dir": "mugen",
@@ -2987,7 +3043,8 @@
     "t",
     "v",
     "w"
-   ]
+   ],
+   "device": "Platforms/98f4eb1d-aed0-408d-9abd-23e6d180eb50.png"
   },
   "Magnavox Odyssey 2": {
    "dir": "magnavox-odyssey-2",
@@ -3201,7 +3258,8 @@
     "w",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/20b4db70-a72d-4cde-ba42-502c2b9bcaa8.png"
   },
   "Mega Duck": {
    "dir": "mega-duck",
@@ -3494,7 +3552,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/ef3ae577-4967-49bc-9b07-1730b2c8d549.png"
   },
   "Microsoft Xbox 360": {
    "dir": "microsoft-xbox-360",
@@ -3556,7 +3615,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/4a5a6212-d550-4499-b3f1-ca66888d0a39.png"
   },
   "Microsoft Xbox One": {
    "dir": "microsoft-xbox-one",
@@ -3616,7 +3676,8 @@
     "w",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/e9b460aa-ee9d-40c2-98e7-c5d0882d75a6.png"
   },
   "Microsoft Xbox Series X/S": {
    "dir": "microsoft-xbox-series-x-s",
@@ -4006,7 +4067,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/74478904-d3eb-44e8-b787-df0c7c99d41c.png"
   },
   "Nintendo 64": {
    "dir": "nintendo-64",
@@ -4068,7 +4130,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/d64cfb7d-b5f2-4d75-8cb8-d4c6d4afde6e.png"
   },
   "Nintendo 64DD": {
    "dir": "nintendo-64dd",
@@ -4098,7 +4161,8 @@
     "r",
     "s",
     "z"
-   ]
+   ],
+   "device": "Platforms/282489e8-b365-4f9d-9fb0-084d6ca44572.png"
   },
   "Nintendo DS": {
    "dir": "nintendo-ds",
@@ -4160,7 +4224,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/b33c8c56-f7d0-4694-8691-805e87bbad96.png"
   },
   "Nintendo Entertainment System": {
    "dir": "nintendo-entertainment-system",
@@ -4222,7 +4287,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/d596f937-974e-42c9-926d-8ad39b653c6b.png"
   },
   "Nintendo Famicom Disk System": {
    "dir": "nintendo-famicom-disk-system",
@@ -4282,7 +4348,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/bcbfe048-3be1-496a-840d-047ba186accf.png"
   },
   "Nintendo Game & Watch": {
    "dir": "nintendo-game-watch",
@@ -4404,7 +4471,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/6df33ae4-8087-4db1-9f7b-965ddcba11de.png"
   },
   "Nintendo Game Boy Advance": {
    "dir": "nintendo-game-boy-advance",
@@ -4466,7 +4534,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/f9d937bb-b026-4805-ae1c-06681143c93c.png"
   },
   "Nintendo Game Boy Color": {
    "dir": "nintendo-game-boy-color",
@@ -4528,7 +4597,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/f699234c-91f0-47f1-a30b-77ed2039a59b.png"
   },
   "Nintendo GameCube": {
    "dir": "nintendo-gamecube",
@@ -4588,7 +4658,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/a9ff4691-02a2-478b-b54f-5803456b0058.png"
   },
   "Nintendo Pokemon Mini": {
    "dir": "nintendo-pokemon-mini",
@@ -4718,7 +4789,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/80520336-50d7-4880-9731-cb3be9adf37a.png"
   },
   "Nintendo Switch 2": {
    "dir": "nintendo-switch-2",
@@ -4814,7 +4886,8 @@
     "t",
     "v",
     "w"
-   ]
+   ],
+   "device": "Platforms/8d4c92d3-31cc-4910-810a-1649c85dbd7a.png"
   },
   "Nintendo Wii": {
    "dir": "nintendo-wii",
@@ -4876,7 +4949,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/058eae17-5c36-410e-b62a-a22c104c97ee.png"
   },
   "Nintendo Wii U": {
    "dir": "nintendo-wii-u",
@@ -4936,7 +5010,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/fa9ba535-b650-468d-96bd-24710d985aae.png"
   },
   "Nokia N-Gage": {
    "dir": "nokia-n-gage",
@@ -7512,7 +7587,8 @@
     "x",
     "y",
     "z"
-   ]
+   ],
+   "device": "Platforms/388cf041-0841-4759-9a29-a778936876a1.png"
   },
   "TRS-80 Color Computer": {
    "dir": "trs-80-color-computer",

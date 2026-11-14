@@ -198,6 +198,11 @@ def build(zip_path, source_modified):
             target.write_text(json.dumps(body, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         if face_buckets:
             platforms[platform]["faces"] = sorted(face_buckets)
+    devices = ROOT / "tools" / "devices.json"  # from tools/devices.py
+    if devices.exists():
+        for platform, file in json.loads(devices.read_text(encoding="utf-8")).items():
+            if platform in platforms:
+                platforms[platform]["device"] = file
     missing = sorted(lb for lb in LIBRETRO.values() if lb not in platforms)
     if missing:
         print("warning: libretro names point at platforms without covers:", ", ".join(missing), file=sys.stderr)

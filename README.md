@@ -76,6 +76,13 @@ exist; a game missing from its file has none. Front-only clients never need thes
 The manifest's `face_kinds` lists these names; a client ignores names it does not know. The
 faces arrived without a new `format`: clients of format 1 read covers exactly as before.
 
+## Devices
+
+A platform's `device` in the manifest, when it has one, is the file of its `Platform Device
+Thumb` image: the console photographed from the front on a clear background. Metadata.zip
+leaves platform images out, so `tools/devices.py` reads them from the database's platform pages
+into `tools/devices.json`, which `build.py` copies into the manifest.
+
 ## Keys
 
 A key is the title:
