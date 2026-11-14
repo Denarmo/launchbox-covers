@@ -6,8 +6,10 @@
     python -I tools/build.py --zip PATH      # uses a Metadata.zip already on disk
 
 Only what a frontend needs to find a box cover is kept: per platform, per first letter of a
-normalised title, the games with that key and their front cover file per region. Images stay on
-LaunchBox's own server (images.launchbox-app.com); nothing here is an image.
+normalised title, the games with that key and their front cover file per region. Beside them, in
+files of their own, the other faces of each game's box, cartridge and disc (FACE_TYPES), for
+frontends that draw the game as an object. Images stay on LaunchBox's own server
+(images.launchbox-app.com); nothing here is an image.
 """
 
 import argparse
@@ -28,6 +30,15 @@ IMAGES = "https://images.launchbox-app.com/"
 FORMAT = 1
 # Front covers, best first. A game gets the first kind it has, one file per region.
 COVER_TYPES = ["Box - Front", "Box - Front - Reconstructed", "Fanart - Box - Front"]
+# The other faces, by the name the face files give them, best kind first.
+FACE_TYPES = {
+    "back": ["Box - Back", "Box - Back - Reconstructed", "Fanart - Box - Back"],
+    "spine": ["Box - Spine"],
+    "cart": ["Cart - Front", "Fanart - Cart - Front"],
+    "cart_back": ["Cart - Back", "Fanart - Cart - Back"],
+    "disc": ["Disc", "Fanart - Disc"],
+}
+IMAGE_TYPES = set(COVER_TYPES) | {kind for kinds in FACE_TYPES.values() for kind in kinds}
 ROOT = Path(__file__).resolve().parent.parent
 
 # Latin-1 letters with accents, as the plain letters they stand for. Frontends that match
@@ -129,7 +140,7 @@ def read(zip_path):
                 element.clear()
             elif tag == "GameImage":
                 kind = element.findtext("Type")
-                if kind in COVER_TYPES:
+                if kind in IMAGE_TYPES:
                     game_id = element.findtext("DatabaseID")
                     region = (element.findtext("Region") or "").strip()
                     file = (element.findtext("FileName") or "").strip()
@@ -142,13 +153,21 @@ def read(zip_path):
 def build(zip_path, source_modified):
     games, alternates, covers = read(zip_path)
     tables = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))  # platform -> bucket -> key -> games
+    face_tables = defaultdict(lambda: defaultdict(dict))  # platform -> bucket -> id -> faces
     counts = defaultdict(int)
+    face_counts = defaultdict(int)
     for game_id, (name, platform) in games.items():
         kinds = covers.get(game_id)
-        if not kinds:
+        if not kinds or not any(kind in kinds for kind in COVER_TYPES):
             continue
         regions = next(kinds[kind] for kind in COVER_TYPES if kind in kinds)
         entry = [int(game_id), name, sorted([region, file] for region, file in regions.items())]
+        faces = {}
+        for face, types in FACE_TYPES.items():
+            found = next((kinds[kind] for kind in types if kind in kinds), None)
+            if found:
+                faces[face] = sorted([region, file] for region, file in found.items())
+                face_counts[face] += 1
         counts[platform] += 1
         seen = set()
         for title in [name] + alternates.get(game_id, []):
@@ -156,6 +175,8 @@ def build(zip_path, source_modified):
             if k and k not in seen:
                 seen.add(k)
                 tables[platform][bucket(k)][k].append(entry)
+                if faces:
+                    face_tables[platform][bucket(k)][game_id] = faces
 
     data = ROOT / "data"
     staging = Path(tempfile.mkdtemp(dir=ROOT, prefix=".data-"))
@@ -169,6 +190,14 @@ def build(zip_path, source_modified):
             body = {k: sorted(v) for k, v in sorted(buckets[name].items())}
             target.write_text(json.dumps(body, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         platforms[platform] = {"dir": folder, "games": counts[platform], "buckets": sorted(buckets)}
+        face_buckets = face_tables.get(platform, {})
+        for name in sorted(face_buckets):
+            target = staging / "faces" / folder / f"{name}.json"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            body = {game_id: face_buckets[name][game_id] for game_id in sorted(face_buckets[name], key=int)}
+            target.write_text(json.dumps(body, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        if face_buckets:
+            platforms[platform]["faces"] = sorted(face_buckets)
     missing = sorted(lb for lb in LIBRETRO.values() if lb not in platforms)
     if missing:
         print("warning: libretro names point at platforms without covers:", ", ".join(missing), file=sys.stderr)
@@ -178,6 +207,7 @@ def build(zip_path, source_modified):
         "source": SOURCE,
         "source_modified": source_modified,
         "images": IMAGES,
+        "face_kinds": list(FACE_TYPES),
         "libretro": dict(sorted(LIBRETRO.items())),
         "platforms": platforms,
     }
@@ -187,6 +217,7 @@ def build(zip_path, source_modified):
     staging.rename(data)
     total = sum(counts.values())
     print(f"data/: {len(platforms)} platforms, {total} games with a front cover")
+    print("faces: " + ", ".join(f"{face} {face_counts[face]}" for face in FACE_TYPES))
 
 
 def main():
