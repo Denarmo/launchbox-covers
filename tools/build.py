@@ -8,7 +8,8 @@
 Only what a frontend needs to find a box cover is kept: per platform, per first letter of a
 normalised title, the games with that key and their front cover file per region. Beside them, in
 files of their own, the other faces of each game's box, cartridge and disc (FACE_TYPES), for
-frontends that draw the game as an object. Images stay on LaunchBox's own server
+frontends that draw the game as an object, and the details a frontend shows about a game
+(DETAIL_FIELDS). Images stay on LaunchBox's own server
 (images.launchbox-app.com); nothing here is an image.
 """
 
@@ -38,6 +39,14 @@ FACE_TYPES = {
     "cart_back": ["Cart - Back", "Fanart - Cart - Back"],
     "disc": ["Disc", "Fanart - Disc"],
 }
+# Details, by the name the detail files give them: (Metadata.xml field, how it is read).
+DETAIL_FIELDS = {
+    "overview": "Overview", "date": "ReleaseDate", "year": "ReleaseYear", "genres": "Genres",
+    "developer": "Developer", "publisher": "Publisher", "players": "MaxPlayers",
+    "rating": "CommunityRating", "votes": "CommunityRatingCount", "esrb": "ESRB",
+}
+# Overviews longer than this are cut at a sentence or word before it.
+OVERVIEW_LIMIT = 3000
 IMAGE_TYPES = set(COVER_TYPES) | {kind for kinds in FACE_TYPES.values() for kind in kinds}
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -110,6 +119,49 @@ def slug(platform):
     return out.strip("-")
 
 
+def overview(text):
+    text = text.strip()
+    if len(text) <= OVERVIEW_LIMIT:
+        return text
+    cut = text[:OVERVIEW_LIMIT]
+    end = max(cut.rfind(". "), cut.rfind(".\n"))
+    if end < OVERVIEW_LIMIT // 2:
+        end = cut.rfind(" ")
+    return cut[: end + 1].rstrip() + ("" if cut[end] == "." else "...")
+
+
+def details_of(element):
+    """The details of a Game element, without the ones it lacks or leaves empty."""
+    out = {}
+    for name, field in DETAIL_FIELDS.items():
+        value = (element.findtext(field) or "").strip()
+        if not value:
+            continue
+        if name == "overview":
+            out[name] = overview(value)
+        elif name == "date":
+            out[name] = value[:10]
+        elif name == "genres":
+            out[name] = [g.strip() for g in value.split(";") if g.strip()]
+        elif name in ("year", "players", "votes"):
+            if value.isdigit() and int(value) > 0:
+                out[name] = int(value)
+        elif name == "rating":
+            try:
+                out[name] = round(float(value), 2)
+            except ValueError:
+                pass
+        elif name == "esrb" and value != "Not Rated":
+            out[name] = value
+        elif name in ("developer", "publisher"):
+            out[name] = value
+    if "date" in out:
+        out.pop("year", None)
+    if "rating" not in out:
+        out.pop("votes", None)
+    return out
+
+
 def download(target):
     request = urllib.request.Request(SOURCE, headers={"User-Agent": "launchbox-covers builder"})
     with urllib.request.urlopen(request, timeout=120) as answer, open(target, "wb") as out:
@@ -120,6 +172,7 @@ def download(target):
 
 def read(zip_path):
     games = {}  # DatabaseID -> (name, platform)
+    details = {}  # DatabaseID -> details
     alternates = defaultdict(list)
     covers = defaultdict(dict)  # DatabaseID -> {type: {region: file}}
     with zipfile.ZipFile(zip_path) as archive, archive.open("Metadata.xml") as xml:
@@ -131,6 +184,9 @@ def read(zip_path):
                 platform = element.findtext("Platform")
                 if game_id and name and platform:
                     games[game_id] = (name.strip(), platform.strip())
+                    found = details_of(element)
+                    if found:
+                        details[game_id] = found
                 element.clear()
             elif tag == "GameAlternateName":
                 game_id = element.findtext("DatabaseID")
@@ -147,15 +203,17 @@ def read(zip_path):
                     if game_id and file and "/" not in file:
                         covers[game_id].setdefault(kind, {}).setdefault(region, file)
                 element.clear()
-    return games, alternates, covers
+    return games, alternates, covers, details
 
 
 def build(zip_path, source_modified):
-    games, alternates, covers = read(zip_path)
+    games, alternates, covers, details = read(zip_path)
     tables = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))  # platform -> bucket -> key -> games
     face_tables = defaultdict(lambda: defaultdict(dict))  # platform -> bucket -> id -> faces
+    detail_tables = defaultdict(lambda: defaultdict(dict))  # platform -> bucket -> id -> details
     counts = defaultdict(int)
     face_counts = defaultdict(int)
+    detail_count = 0
     for game_id, (name, platform) in games.items():
         kinds = covers.get(game_id)
         if not kinds or not any(kind in kinds for kind in COVER_TYPES):
@@ -169,6 +227,8 @@ def build(zip_path, source_modified):
                 faces[face] = sorted([region, file] for region, file in found.items())
                 face_counts[face] += 1
         counts[platform] += 1
+        detail = details.get(game_id)
+        detail_count += 1 if detail else 0
         seen = set()
         for title in [name] + alternates.get(game_id, []):
             k = key(title)
@@ -177,6 +237,8 @@ def build(zip_path, source_modified):
                 tables[platform][bucket(k)][k].append(entry)
                 if faces:
                     face_tables[platform][bucket(k)][game_id] = faces
+                if detail:
+                    detail_tables[platform][bucket(k)][game_id] = detail
 
     data = ROOT / "data"
     staging = Path(tempfile.mkdtemp(dir=ROOT, prefix=".data-"))
@@ -190,14 +252,15 @@ def build(zip_path, source_modified):
             body = {k: sorted(v) for k, v in sorted(buckets[name].items())}
             target.write_text(json.dumps(body, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         platforms[platform] = {"dir": folder, "games": counts[platform], "buckets": sorted(buckets)}
-        face_buckets = face_tables.get(platform, {})
-        for name in sorted(face_buckets):
-            target = staging / "faces" / folder / f"{name}.json"
-            target.parent.mkdir(parents=True, exist_ok=True)
-            body = {game_id: face_buckets[name][game_id] for game_id in sorted(face_buckets[name], key=int)}
-            target.write_text(json.dumps(body, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        if face_buckets:
-            platforms[platform]["faces"] = sorted(face_buckets)
+        for kind, kind_tables in (("faces", face_tables), ("details", detail_tables)):
+            kind_buckets = kind_tables.get(platform, {})
+            for name in sorted(kind_buckets):
+                target = staging / kind / folder / f"{name}.json"
+                target.parent.mkdir(parents=True, exist_ok=True)
+                body = {game_id: kind_buckets[name][game_id] for game_id in sorted(kind_buckets[name], key=int)}
+                target.write_text(json.dumps(body, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            if kind_buckets:
+                platforms[platform][kind] = sorted(kind_buckets)
     devices = ROOT / "tools" / "devices.json"  # from tools/devices.py
     if devices.exists():
         for platform, file in json.loads(devices.read_text(encoding="utf-8")).items():
@@ -213,6 +276,7 @@ def build(zip_path, source_modified):
         "source_modified": source_modified,
         "images": IMAGES,
         "face_kinds": list(FACE_TYPES),
+        "detail_kinds": list(DETAIL_FIELDS),
         "libretro": dict(sorted(LIBRETRO.items())),
         "platforms": platforms,
     }
@@ -223,6 +287,7 @@ def build(zip_path, source_modified):
     total = sum(counts.values())
     print(f"data/: {len(platforms)} platforms, {total} games with a front cover")
     print("faces: " + ", ".join(f"{face} {face_counts[face]}" for face in FACE_TYPES))
+    print(f"details: {detail_count} games")
 
 
 def main():

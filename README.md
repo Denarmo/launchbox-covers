@@ -17,6 +17,7 @@ their community's. The tools in `tools/` are under the MIT licence.
 data/manifest.json                 version, platforms, libretro names, image base address
 data/covers/<platform>/<b>.json    the games of one platform whose key starts with <b>
 data/faces/<platform>/<b>.json     the other faces of those games, by database id
+data/details/<platform>/<b>.json   the details of those games, by database id
 ```
 
 `manifest.json`:
@@ -75,6 +76,31 @@ exist; a game missing from its file has none. Front-only clients never need thes
 
 The manifest's `face_kinds` lists these names; a client ignores names it does not know. The
 faces arrived without a new `format`: clients of format 1 read covers exactly as before.
+
+## Details
+
+`data/details/<platform>/<b>.json` holds, for the games of the cover file `<b>.json`, what a
+frontend shows about them, by LaunchBox database id. A platform's `details` in the manifest lists
+the files that exist; a game missing from its file has none, and a field a game lacks is left out.
+
+```json
+{"3349": {"overview": "The year is 2035 and Soma Cruz ...", "date": "2003-05-06",
+          "genres": ["Action", "Adventure", "Platform"], "developer": "Konami", "publisher": "Konami",
+          "players": 1, "rating": 4.61, "votes": 389, "esrb": "T - Teen"}}
+```
+
+| Field | Metadata.xml | |
+|---|---|---|
+| `overview` | `Overview` | cut at a sentence before 3000 characters |
+| `date` | `ReleaseDate` | `YYYY-MM-DD` |
+| `year` | `ReleaseYear` | only when there is no `date` |
+| `genres` | `Genres` | a list |
+| `developer`, `publisher` | `Developer`, `Publisher` | |
+| `players` | `MaxPlayers` | |
+| `rating`, `votes` | `CommunityRating`, `CommunityRatingCount` | 0..5, two decimals |
+| `esrb` | `ESRB` | left out when `Not Rated` |
+
+The manifest's `detail_kinds` lists these names; like the faces, details need no new `format`.
 
 ## Devices
 
